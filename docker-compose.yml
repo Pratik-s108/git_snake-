@@ -1,13 +1,20 @@
-version: '3'
+# docker-compose.yml
+version: '3.8'
+
 services:
-  snake-game:
+  snakeapp:
     build: .
+    ports:
+      - "1020:1020"
+    # Optional: Set environment variables if needed
+    environment:
+      - RED_SNAKE_DURATION=15000  # Example duration in milliseconds
+      - INVERT_CONTROLS_DURATION=10000
+      - BLUE_RAT_DURATION=10000
+      - NORMAL_RAT_POINTS=5
+      - BLUE_RAT_POINTS=20
+    # Optional: Mount volumes if needed
     volumes:
       - .:/app
-    ports:
-      - "8000:8000"
-    environment:
-      - DISPLAY=${DISPLAY}
-    devices:
-      - /dev/snd  # Allow sound
-    command: python3 main.py  # Replace 'main.py' with your Python script name
+    # Optional: Specify working directory
+    working_dir: /app
