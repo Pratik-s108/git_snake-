@@ -1,3 +1,4 @@
+# Dockerfile
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
 
@@ -15,6 +16,9 @@ RUN apt-get update && apt-get install -y \
 
 # Install pygame
 RUN pip install pygame
+
+# Expose port 1020 (example port number) from the container
+EXPOSE 1020
 
 # Run the application
 CMD ["python", "./snake_game.py"]
