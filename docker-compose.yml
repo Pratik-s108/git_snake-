@@ -1,0 +1,13 @@
+version: '3'
+services:
+  snake-game:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DISPLAY=${DISPLAY}
+    devices:
+      - /dev/snd  # Allow sound
+    command: python3 main.py  # Replace 'main.py' with your Python script name
