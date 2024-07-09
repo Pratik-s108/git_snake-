@@ -5,7 +5,7 @@ services:
   snakeapp:
     build: .
     ports:
-      - "1020:1020"
+      - "8000:8000"
     # Optional: Set environment variables if needed
     environment:
       - RED_SNAKE_DURATION=15000  # Example duration in milliseconds
