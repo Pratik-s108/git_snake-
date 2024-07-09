@@ -1,24 +1,20 @@
-# Dockerfile
-# Use an official Python runtime as a parent image
-FROM python:3.8-slim
+# Use the official Python image
+FROM python:3.9
 
-# Set the working directory in the container
+# Create a working directory for the application
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy requirements.txt (if you have one)
+COPY requirements.txt ./
+
+# Install dependencies if a requirements.txt file exists
+RUN pip install -r requirements.txt
+
+# Copy the Python script and any other application files
 COPY . .
 
-# Install any needed packages specified in requirements.txt
-RUN apt-get update && apt-get install -y \
-    python3-dev \
-    python3-pygame \
- && rm -rf /var/lib/apt/lists/*
+# Expose the port the application will run on (optional)
+EXPOSE 8000
 
-# Install pygame
-RUN pip install pygame
-
-# Expose port 1020 (example port number) from the container
-EXPOSE 1020
-
-# Run the application
-CMD ["python", "./snake_game.py"]
+# Run the Python script
+CMD ["python", "main.py"]
